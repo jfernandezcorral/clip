@@ -8,7 +8,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 let config = {
   entry: [path.resolve(__dirname,'./src/client/index.js')],
   output: {
-    path: path.resolve(__dirname,'./src/build'),
+    path: path.resolve(__dirname,'./build'),
     filename: 'index_bundle.js'
   },
   resolve: {
