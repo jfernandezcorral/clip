@@ -19,7 +19,7 @@ const view = ()=>{
     mainW.show()
 }
 const blur = ()=>{
-    mainW.hide()
+    //mainW.hide()
 }
 app.on('ready', ()=>{
     mainW = new BrowserWindow({
@@ -60,4 +60,7 @@ const posicionar = ()=>{
         bounds.y = wa.height + wa.y - MARGIN - HEIGHT
     }
     mainW.setPosition(bounds.x, bounds.y)
+}
+exports.hideW = ()=>{
+    mainW.hide()
 }

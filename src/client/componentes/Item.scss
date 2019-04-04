@@ -1,0 +1,15 @@
+.item{
+    padding: .5em 2em .5em .5em;
+    border: 1px solid #5e5252;
+    margin-top: .2em;
+    border-radius: 2px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    &:hover{
+        border: 1px solid #ddcbcb;
+        background-color: #454545;
+        color: white;
+    }
+}
