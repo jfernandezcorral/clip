@@ -32,8 +32,9 @@
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
-    "electron-localshortcut": "^3.1.0"
+    "webpack-cli": "^3.3.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "electron-localshortcut": "^3.1.0"
+  }
 }
