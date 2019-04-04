@@ -7,6 +7,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
+    position: relative;
     &:hover{
         border: 1px solid #ddcbcb;
         background-color: #454545;
@@ -16,5 +17,21 @@
         border: 1px solid #ddcbcb;
         background-color: #f0f0f0;
         color: #303030;
+    }
+    .delete{
+        border-radius: 2em;
+        padding: 1em 0 0 1em;
+        background-image: url('~img/aspa.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 85%;
+        position: absolute;
+        top: 6px;
+        right: 7px;
+        cursor: default;
+            transition: background-color .3s ease-in-out;
+        &:hover{
+            background-color: #101010;
+        }
     }
 }

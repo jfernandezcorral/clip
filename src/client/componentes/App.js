@@ -9,11 +9,12 @@ export default class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            items: [],
+            items: [/*"dfsdfd", "fjdlkjsf", "fasdf dfas", "sdlifasdfj", "dsfasdf df"*/],
             marcado: -1
         }
         this.ftimer = this.ftimer.bind(this)
         this.keypress = this.keypress.bind(this)
+        this.borrar = this.borrar.bind(this)
     }
     ftimer(){
         const {items} = this.state
@@ -23,15 +24,15 @@ export default class App extends React.Component {
         }
         if (items.includes(item)){
             const p = items.filter(x=>x!=item)
-            this.setState({items:[item, ...p]})
+            this.setState({marcado: -1, items:[item, ...p]}, ()=>this.ajusteScroll())
         }
         else{
-            this.setState({items:[item, ...items]})
+            this.setState({marcado: -1, items:[item, ...items]},()=>this.ajusteScroll())
         }
     }
     ajusteScroll(){
         const height = this.el.firstElementChild.offsetHeight
-        const heightW = document.body.offsetHeight
+        const heightW = this.el.offsetHeight
         if (height < heightW){
             return
         }
@@ -77,12 +78,17 @@ export default class App extends React.Component {
         clipboard.writeText(txt)
         mainProcess.hideW()
     }
+    borrar(item){
+        const {items} = this.state
+        const p = items.filter(x=>x!=item)
+        this.setState({marcado: -1, items:p}, ()=>this.ajusteScroll())
+    }
     render() {
         const {items, marcado} = this.state
         return (
         	<div ref={el=>this.el=el} className={cx('app')}>
                 <div>
-                    {items.map((item, index)=><Item key={item} value={item} marcado={index==marcado} select={this.select}/>)}
+                    {items.map((item, index)=><Item key={item} borrar={this.borrar} value={item} marcado={index==marcado} select={this.select}/>)}
                 </div>
         	</div>
         )

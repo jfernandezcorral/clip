@@ -3,7 +3,7 @@ const {app, BrowserWindow, globalShortcut, Menu, Tray} = require ('electron')
 const electron = require('electron')
 const path = require('path')
 const WIDTH = 350
-const HEIGHT = 150
+const HEIGHT = 300
 const MARGIN = 2
 let tray = null
 let mainW = null;
@@ -19,7 +19,7 @@ const view = ()=>{
     mainW.show()
 }
 const blur = ()=>{
-    //mainW.hide()
+    mainW.hide()
 }
 app.on('ready', ()=>{
     mainW = new BrowserWindow({
