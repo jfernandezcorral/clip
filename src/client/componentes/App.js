@@ -29,9 +29,23 @@ export default class App extends React.Component {
             this.setState({items:[item, ...items]})
         }
     }
+    ajusteScroll(){
+        const height = this.el.firstElementChild.offsetHeight
+        const heightW = document.body.offsetHeight
+        if (height < heightW){
+            return
+        }
+        const sizeItem = height/this.state.items.length
+        const ns = sizeItem*(this.state.marcado+1)
+        if (ns > (heightW - 20)){
+            this.el.scrollTop = ns - heightW + 20
+        }
+        else{
+            this.el.scrollTop = 0
+        }
+    }
     keypress(e){
         const k = e.key
-        console.log(k)
         const {marcado, items} = this.state
         let nextMarcado = marcado
         if (k=="ArrowDown"){
@@ -43,8 +57,13 @@ export default class App extends React.Component {
         else if (k=="ArrowLeft"){
             nextMarcado = -1
         }
-        this.setState({marcado: nextMarcado})
-        console.log(nextMarcado)
+        else if (k=="Enter" && marcado >=0){
+            this.select(items[marcado])
+            return
+        }
+        this.setState({marcado: nextMarcado}, ()=>this.ajusteScroll())
+        //this.ajusteScroll()
+        //console.log(nextMarcado)
     }
     componentDidMount(){
         this.timer = setInterval(this.ftimer, 2000)
@@ -59,10 +78,12 @@ export default class App extends React.Component {
         mainProcess.hideW()
     }
     render() {
-        const {items} = this.state
+        const {items, marcado} = this.state
         return (
-        	<div className={cx('app')}>
-        		{items.map(item=><Item key={item} value={item} select={this.select}/>)}
+        	<div ref={el=>this.el=el} className={cx('app')}>
+                <div>
+                    {items.map((item, index)=><Item key={item} value={item} marcado={index==marcado} select={this.select}/>)}
+                </div>
         	</div>
         )
     }
