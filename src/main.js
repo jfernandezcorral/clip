@@ -39,7 +39,7 @@ app.on('ready', ()=>{
     electronLocalshorcut.register( mainW, 'CommandOrControl+K', ()=>{
         mainW.webContents.toggleDevTools()
     })
-    globalShortcut.register('CommandOrControl+A', ()=>{
+    globalShortcut.register('CommandOrControl+7', ()=>{
         view()
     })
     tray = new Tray(path.join(__dirname, 'engine.ico'))
